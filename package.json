@@ -1,0 +1,20 @@
+{
+  "name": "react-card-carousel-js",
+  "version": "1.0.0",
+  "description": "Original library: https://github.com/TomorrowIdeas/react-card-carousel",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergioarieljuarez/react-card-carousel-js.git"
+  },
+  "author": "Sergio Ariel Juarez (Ch3k0) <sergioarieljuarez@gmail.com> (https://sergioarieljuarez.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sergioarieljuarez/react-card-carousel-js/issues"
+  },
+  "homepage": "https://github.com/sergioarieljuarez/react-card-carousel-js#readme"
+}
