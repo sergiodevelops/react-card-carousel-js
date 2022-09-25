@@ -4,7 +4,8 @@ Original library by:
 https://github.com/TomorrowIdeas/react-card-carousel 
 
 Modified library by:
-https://sergioarieljuarez.com
+https://github.com/sergioarieljuarez/react-card-carousel-js
+
 
 Original Readme by: 
 https://github.com/TomorrowIdeas/react-card-carousel#readme
