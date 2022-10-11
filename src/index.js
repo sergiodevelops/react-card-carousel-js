@@ -167,20 +167,22 @@ module.exports = (function (e) {
                                 a = e.disable_box_shadow;
                             return i.default.Children.map(n.props.children, function (e, u) {
                                 let s = n._getCardClass(u);
+                                let f = n.props;
                                 return i.default.createElement(
                                     "div",
                                     {
                                         key: u,
                                         onClick: function () {
-                                            if (n.props.disable_move) return;
+                                            if (t.disable_move) return;
                                             return n._cardOnClick(s);
                                         },
                                         style: r({}, l.STYLES.CARD, {
-                                            opacity: (0, l.getOpacity)(s),
+                                            userSelect: ("none", l.getUserSelect)(s),
+                                            opacity: (0, l.getOpacity)(s, f),
                                             zIndex: (0, l.getZIndex)(s),
                                             transform: (0, l.getTransform)(s, t, o),
                                             boxShadow: (0, l.getBoxShadow)(s, t, a),
-                                            cursor: (0, l.getCursor)(s, t),
+                                            cursor: (0, l.getCursor)(s, t, f),
                                         }),
                                     },
                                     e
@@ -213,9 +215,6 @@ module.exports = (function (e) {
                                     n = t.initial_index,
                                     r = t.disable_keydown,
                                     o = t.disable_fade_in,
-                                    ma = t.disable_move,
-                                    mb = t.disable_move_left,
-                                    mc = t.disable_move_right,
                                     a = t.autoplay;
                                 (this._is_mounted = !0),
                                 o ||
@@ -252,6 +251,7 @@ module.exports = (function (e) {
             disable_move: u.default.bool,
             disable_move_left: u.default.bool,
             disable_move_right: u.default.bool,
+            hide_last_card: u.default.bool,
             autoplay: u.default.bool,
             autoplay_speed: u.default.number,
             afterChange: u.default.func,
@@ -266,6 +266,7 @@ module.exports = (function (e) {
                 disable_move: !1,
                 disable_move_left: !1,
                 disable_move_right: !1,
+                hide_last_card: !1,
                 autoplay: !1,
                 autoplay_speed: 5e3,
                 afterChange: function () {
@@ -336,8 +337,11 @@ module.exports = (function (e) {
         "use strict";
         Object.defineProperty(t, "__esModule", {value: !0}),
             (t.STYLES = void 0),
-            (t.getOpacity = function (e) {
-                return e === r.POSITION.HIDDEN ? 0 : 1;
+            (t.getUserSelect = function (e) {
+                return (e === r.POSITION.PREV || e === r.POSITION.NEXT) ? "none" : "text";
+            }),
+            (t.getOpacity = function (e, f) {
+                return e === r.POSITION.HIDDEN || (e === r.POSITION.PREV && f.hide_last_card) ? 0 : 1;
             }),
             (t.getZIndex = function (e) {
                 return e === r.POSITION.HIDDEN ? 0 : e === r.POSITION.CURRENT ? 2 : 1;
@@ -368,14 +372,14 @@ module.exports = (function (e) {
                 }
                 return "unset";
             }),
-            (t.getCursor = function (e, t) {
+            (t.getCursor = function (e, t, f) {
                 if (e === r.POSITION.NEXT) {
                     if (t === r.ALIGNMENT.HORIZONTAL) return "e-resize";
                     if (t === r.ALIGNMENT.VERTICAL) return "s-resize";
                 }
                 if (e === r.POSITION.PREV) {
-                    if (t === r.ALIGNMENT.HORIZONTAL) return "w-resize";
-                    if (t === r.ALIGNMENT.VERTICAL) return "n-resize";
+                    if (t === r.ALIGNMENT.HORIZONTAL && !f.hide_last_card) return "w-resize";
+                    if (t === r.ALIGNMENT.VERTICAL && !f.hide_last_card) return "n-resize";
                 }
                 return "unset";
             });
