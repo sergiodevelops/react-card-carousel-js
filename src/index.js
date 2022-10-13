@@ -173,7 +173,7 @@ module.exports = (function (e) {
                                     {
                                         key: u,
                                         onClick: function () {
-                                            if (t.disable_move) return;
+                                            if (f.disable_move) return;
                                             return n._cardOnClick(s);
                                         },
                                         style: r({}, l.STYLES.CARD, {
